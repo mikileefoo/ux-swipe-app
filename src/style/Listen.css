@@ -1,0 +1,52 @@
+.soundWrap {
+    position: relative;
+}
+
+.soundWrap .icon {
+    position: absolute;
+    right:75px;
+    bottom:20px;
+}
+
+.soundWrap .icon button {
+    background-color:rgba(250,250,250,0.90);
+    border:none;
+    border-radius: 100%;
+    width:50px;
+    height: 50px;
+    z-index: 99;
+    position: relative;
+    background-image: url(../images/headphones_black.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    outline: none;
+}
+    .soundWrap .icon button.active {
+        background-color:rgba(0,0,0,0.90);
+        background-image: url(../images/headphones_white.svg);
+    }
+
+.soundWrap .soundfile {
+    background:rgba(250,250,250,0.4);
+    color:black;
+    display: none;
+    height:0px;
+}
+
+.soundWrap.active + div.info {
+    bottom:125px;
+}
+
+.soundWrap.active .icon {
+    bottom:120px;
+}
+
+.soundWrap.active ~ div.speakWrap .icon {
+    bottom:120px;
+}
+
+.soundWrap.active .soundfile {
+    display:block;
+    height: 100px;
+}
+
