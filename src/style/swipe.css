@@ -13,6 +13,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .border {
@@ -26,7 +27,7 @@
 }
 
 .smklogo {
-  background-image: url(/static/media/SMK_SecondaryLogo_White.5f8d0807.png);
+  background-image: url(../images/SMK_SecondaryLogo_White.png);
   position: absolute;
   background-size: cover;
   width: 48px;
