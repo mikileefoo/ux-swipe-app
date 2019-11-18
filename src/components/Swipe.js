@@ -3,13 +3,12 @@ import SwipeableViews from 'react-swipeable-views';
 import Listen from './Listen';
 import Speak from './Speak';
 import Info from './Info';
-import { imgDataExp } from '../data/data';
 import '../style/swipe.css';
 
 
 
 const imgData = [
-    {title: 'Kvinde i chemise', artist: 'André Derain', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202006/KMSr14.jpg)'}, soundurl: 'www.apple.com'},
+    {title: 'Kvinde i chemise', artist: 'André Derain', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202006/KMSr14.jpg)'}, soundurl: 'http://mikileefoo.dk/ux/static/media/tal_r.mp3'},
     {title: 'Antiklimaks. Zen-billede. Haiku. I-IV', artist: 'Richard Mortensen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202003/Globus%20oktober%202003/kms7904_1.jpg)'}, soundurl: 'www.apple.com'},
     {title: 'April. Et ungt par i et landskab', artist: 'Henrik Schouboe', img: {background: 'url(http://cspic.smk.dk/globus/31611032/img0026.jpg)'}, soundurl: 'www.apple.com'},
     {title: '18.V.92', artist: 'Richard Mortensen', img: {background: 'url(http://cspic.smk.dk/globus/40412321/img0212.jpg)'}, soundurl: 'www.apple.com'},
@@ -65,7 +64,9 @@ const MyComponent = () => (
     <SwipeableViews enableMouseEvents>
       <div className="swipeWrap">
         <div style={Object.assign({}, imgData[0].img)} className="itemWrap">
-            <div className="bottomWrap">   
+            <div className="bottomWrap">
+                <Speak />
+                <Listen url={imgData[0].soundurl} />
                 <Info title={imgData[0].title} artist={imgData[0].artist} />
             </div>
         </div>

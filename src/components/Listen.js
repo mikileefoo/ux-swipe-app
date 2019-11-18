@@ -11,7 +11,7 @@ function Listen({url}) {
                 <button className={isClicked ? "active" : ""} onClick={() => setClick(!isClicked)}></button>
             </div>
             <div className="soundfile">
-            {url}
+                <audio src={url} controls />    
             </div>
         </div>
     );

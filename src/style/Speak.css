@@ -6,6 +6,30 @@
     display:none;
 }
 
+    .speakWrap .record_modal.active {
+        display: flex;
+        position: absolute;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index: 999;
+        background:rgba(0,0,0,0.8);
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        padding:10%;
+        box-sizing: border-box;
+    }
+
+
+.speakWrap .modal-content {
+    border:5px solid white;
+    padding:20px;
+    line-height: 1.6rem;
+    font-size: 1.2rem;
+}
+
 .speakWrap .icon {
     position: absolute;
     right:10px;
