@@ -64,7 +64,6 @@ class MyComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 0,
       frontpage: 'http://mikileefoo.dk/ux/static/media/mountains.mp3'
     }
     this.child = React.createRef();
@@ -73,21 +72,15 @@ class MyComponent extends Component {
   stopSound = () => {
     if(this.child.current.state.is_playing) {
        this.child.current.togglePlay();
+       console.log('Playing')
+    } else {
+      console.log('Not Playing')
     }
-  };
-
-  handleChangeIndex = index => {
-    this.setState({
-      index,
-    });
   };
 
   render() {
     return(
       <SwipeableViews 
-      index={this.state.index}
-      onChangeIndex={this.handleChangeIndex}
-      onTransitionEnd={console.log(this.state.index)}
       onTransitionEnd={this.stopSound} 
       enableMouseEvents
       >
