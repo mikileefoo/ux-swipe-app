@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import Listen from './Listen';
 import Speak from './Speak';
 import Info from './Info';
+import Player from './Player';
 import '../style/swipe.css';
 
 
@@ -60,368 +60,402 @@ const imgData = [
     {title: 'Selvportræt', artist: 'Henri Matisse', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202010/KMSr78.jpg)'}, soundurl: 'www.apple.com'}
 ];
 
-const MyComponent = () => (
-    <SwipeableViews enableMouseEvents>
-    <div className="swipeWrap">
-      <div className="onboarding">
-      <div className="smklogo"></div>
-        <span className="obtekst">Tag dine høretelefoner på og lyt</span>
-        <div className="border"></div>
-      </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[0].img)} className="itemWrap">
-        <div className="bottomWrap">
-            <Speak />
-            <Listen url={imgData[0].soundurl} />
-            <Info title={imgData[0].title} artist={imgData[0].artist} />
+class MyComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 0,
+      frontpage: 'http://mikileefoo.dk/ux/static/media/mountains.mp3'
+    }
+    this.child = React.createRef();
+  }
+
+  stopSound = () => {
+    if(this.child.current.state.is_playing) {
+       this.child.current.togglePlay();
+    }
+  };
+
+  handleChangeIndex = index => {
+    this.setState({
+      index,
+    });
+  };
+
+  render() {
+    return(
+      <SwipeableViews 
+      index={this.state.index}
+      onChangeIndex={this.handleChangeIndex}
+      onTransitionEnd={console.log(this.state.index)}
+      onTransitionEnd={this.stopSound} 
+      enableMouseEvents
+      >
+      <div className="swipeWrap">
+        <div className="onboarding">
+        <div className="smklogo"></div>
+          <div className="frontContent">
+            <span className="obtekst">Tag dine høretelefoner på, tryk på knappen, og lyt</span>
+            <Player ref={this.child} sound={this.state.frontpage} />
+          </div>
+          <div className="border"></div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[1].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[1].title} artist={imgData[1].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[0].img)} className="itemWrap">
+          <div className="bottomWrap">
+              <Speak />
+              <Player ref={this.child} sound={imgData[0].soundurl} />
+              <Info title={imgData[0].title} artist={imgData[0].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[2].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[2].title} artist={imgData[2].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[1].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[1].title} artist={imgData[1].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[3].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[3].title} artist={imgData[3].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[2].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[2].title} artist={imgData[2].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[4].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[4].title} artist={imgData[4].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[3].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[3].title} artist={imgData[3].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[5].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[5].title} artist={imgData[5].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[4].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[4].title} artist={imgData[4].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[6].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[6].title} artist={imgData[6].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[5].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[5].title} artist={imgData[5].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[7].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[7].title} artist={imgData[7].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[6].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[6].title} artist={imgData[6].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[8].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[8].title} artist={imgData[8].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[7].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[7].title} artist={imgData[7].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[9].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[9].title} artist={imgData[9].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[8].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[8].title} artist={imgData[8].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[10].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[10].title} artist={imgData[10].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[9].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[9].title} artist={imgData[9].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[11].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[11].title} artist={imgData[11].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[10].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[10].title} artist={imgData[10].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[12].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[12].title} artist={imgData[12].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[11].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[11].title} artist={imgData[11].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[13].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[13].title} artist={imgData[13].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[12].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[12].title} artist={imgData[12].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[14].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[14].title} artist={imgData[14].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[13].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[13].title} artist={imgData[13].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[15].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[15].title} artist={imgData[15].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[14].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[14].title} artist={imgData[14].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[16].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[16].title} artist={imgData[16].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[15].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[15].title} artist={imgData[15].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[17].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[17].title} artist={imgData[17].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[16].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[16].title} artist={imgData[16].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[18].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[18].title} artist={imgData[18].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[17].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[17].title} artist={imgData[17].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[19].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[19].title} artist={imgData[19].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[18].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[18].title} artist={imgData[18].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[20].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[20].title} artist={imgData[20].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[19].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[19].title} artist={imgData[19].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[21].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[21].title} artist={imgData[21].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[20].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[20].title} artist={imgData[20].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[22].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[22].title} artist={imgData[22].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[21].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[21].title} artist={imgData[21].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[23].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[23].title} artist={imgData[23].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[22].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[22].title} artist={imgData[22].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[24].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[24].title} artist={imgData[24].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[23].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[23].title} artist={imgData[23].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[25].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[25].title} artist={imgData[25].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[24].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[24].title} artist={imgData[24].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[26].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[26].title} artist={imgData[26].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[25].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[25].title} artist={imgData[25].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[27].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[27].title} artist={imgData[27].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[26].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[26].title} artist={imgData[26].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[28].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[28].title} artist={imgData[28].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[27].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[27].title} artist={imgData[27].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[29].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[29].title} artist={imgData[29].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[28].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[28].title} artist={imgData[28].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[30].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[30].title} artist={imgData[30].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[29].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[29].title} artist={imgData[29].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[31].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[31].title} artist={imgData[31].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[30].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[30].title} artist={imgData[30].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[32].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[32].title} artist={imgData[32].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[31].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[31].title} artist={imgData[31].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[33].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[33].title} artist={imgData[33].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[32].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[32].title} artist={imgData[32].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[34].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[34].title} artist={imgData[34].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[33].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[33].title} artist={imgData[33].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[35].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[35].title} artist={imgData[35].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[34].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[34].title} artist={imgData[34].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[36].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[36].title} artist={imgData[36].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[35].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[35].title} artist={imgData[35].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[37].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[37].title} artist={imgData[37].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[36].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[36].title} artist={imgData[36].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[38].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[38].title} artist={imgData[38].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[37].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[37].title} artist={imgData[37].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[39].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[39].title} artist={imgData[39].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[38].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[38].title} artist={imgData[38].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[40].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[40].title} artist={imgData[40].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[39].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[39].title} artist={imgData[39].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[41].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[41].title} artist={imgData[41].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[40].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[40].title} artist={imgData[40].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[42].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[42].title} artist={imgData[42].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[41].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[41].title} artist={imgData[41].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[43].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[43].title} artist={imgData[43].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[42].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[42].title} artist={imgData[42].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[44].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[44].title} artist={imgData[44].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[43].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[43].title} artist={imgData[43].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[45].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[45].title} artist={imgData[45].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[44].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[44].title} artist={imgData[44].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[46].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[46].title} artist={imgData[46].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[45].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[45].title} artist={imgData[45].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[47].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[47].title} artist={imgData[47].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[46].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[46].title} artist={imgData[46].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[48].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[48].title} artist={imgData[48].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[47].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[47].title} artist={imgData[47].artist} />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="swipeWrap">
-      <div style={Object.assign({}, imgData[49].img)} className="itemWrap">
-        <div className="bottomWrap">
-          <Info title={imgData[49].title} artist={imgData[49].artist} />
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[48].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[48].title} artist={imgData[48].artist} />
+          </div>
         </div>
       </div>
-    </div>
-  </SwipeableViews>
-);
+      <div className="swipeWrap">
+        <div style={Object.assign({}, imgData[49].img)} className="itemWrap">
+          <div className="bottomWrap">
+            <Info title={imgData[49].title} artist={imgData[49].artist} />
+          </div>
+        </div>
+      </div>
+    </SwipeableViews>
+    )
+  }
+} 
 
 export default MyComponent;

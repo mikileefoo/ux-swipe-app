@@ -34,7 +34,14 @@
     position: absolute;
     right:10px;
     bottom:20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
 }
+    .speakWrap .icon span {
+        font-size: 12px;
+        margin-top: 5px;
+    }
 
 .speakWrap .icon button {
     background-color:rgba(250,250,250,0.90);
