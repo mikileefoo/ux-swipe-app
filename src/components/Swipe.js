@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Speak from './Speak';
 import Info from './Info';
-import Player from './Player';
+//import Player from './Player';
+import Child from './Child';
 import '../style/swipe.css';
 
 
@@ -61,35 +62,35 @@ const imgData = [
 ];
 
 class MyComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      frontpage: 'http://mikileefoo.dk/ux/static/media/mountains.mp3'
-    }
-    this.child = React.createRef();
+  state = {
+    frontpage: 'http://mikileefoo.dk/ux/static/media/mountains.mp3',
+    index: 0
+  }
+  acceptMethods(childDoAlert) {
+    this.childDoAlert = childDoAlert;
   }
 
-  stopSound = () => {
-    if(this.child.current.state.is_playing) {
-       this.child.current.togglePlay();
-       console.log('Playing')
-    } else {
-      console.log('Not Playing')
-    }
+  handleChangeIndex = index => {
+    this.setState({
+      index,
+    });
   };
 
   render() {
     return(
-      <SwipeableViews 
-      onTransitionEnd={this.stopSound} 
+      <SwipeableViews
+      index={this.state.index}
+      onChangeIndex={this.handleChangeIndex} 
+      onTransitionEnd={() => this.childDoAlert()}
+      onSwitching={console.log(this.state.index)}
       enableMouseEvents
       >
       <div className="swipeWrap">
         <div className="onboarding">
         <div className="smklogo"></div>
           <div className="frontContent">
-            <span className="obtekst">Tag dine høretelefoner på, tryk på knappen, og lyt</span>
-            <Player ref={this.child} sound={this.state.frontpage} />
+            <span className="obtekst"><strong>SMK Explore</strong> <br /><br />Tag dine høretelefoner på, tryk på knappen, og lyt</span>
+            <Child sound={this.state.frontpage} shareMethods={this.acceptMethods.bind(this)}/>
           </div>
           <div className="border"></div>
         </div>
@@ -98,8 +99,8 @@ class MyComponent extends Component {
         <div style={Object.assign({}, imgData[0].img)} className="itemWrap">
           <div className="bottomWrap">
               <Speak />
-              <Player ref={this.child} sound={imgData[0].soundurl} />
               <Info title={imgData[0].title} artist={imgData[0].artist} />
+              <Child sound={imgData[0].soundurl} shareMethods={this.acceptMethods.bind(this)}/>
           </div>
         </div>
       </div>

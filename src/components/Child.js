@@ -1,30 +1,19 @@
 import React, { Component } from 'react';
 
-class Player extends Component {   
+class Child extends Component {
     componentDidMount() {
-    // Child passes its method to the parent
-    this.props.shareMethods(this.doAlert.bind(this));
+      // Child passes its method to the parent
+      this.props.shareMethods(this.stopSound.bind(this));
     }
-    
     state = {
         is_playing: false
     }
-
     togglePlay() {
         this.setState({ is_playing: !this.state.is_playing });
     }
-
-    doAlert() {
-        alert('clicked');
-    }
-
     stopSound() {
-    if(this.state.is_playing) {
-       this.togglePlay();
-       console.log('Playing')
-    } else {
-      console.log('Not Playing')
-    }
+        this.setState({is_playing: false})
+        console.log('u here');
     };
 
     render() {
@@ -51,7 +40,7 @@ class Player extends Component {
         };
 
         return (
-            <div className="player" >
+            <div className="player">
                 <div className="soundIcon" onClick={this.togglePlay.bind(this)}>
                     <div className={classnames(playerClassNames)}></div>
                 </div>
@@ -61,7 +50,7 @@ class Player extends Component {
             </div>
         );
     }
-}
+  }
 
 function classnames(obj) {
     var css = [];
@@ -71,6 +60,7 @@ function classnames(obj) {
         }
     });
     return css.join(' '); 
-} 
+}
 
-export default Player;
+
+export default Child;
