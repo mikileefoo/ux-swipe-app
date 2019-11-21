@@ -5,6 +5,7 @@ class Child extends Component {
       // Child passes its method to the parent
       this.props.shareMethods(this.stopSound.bind(this));
     }
+
     state = {
         is_playing: false
     }
@@ -14,6 +15,7 @@ class Child extends Component {
     stopSound() {
         this.setState({is_playing: false})
         console.log('u here');
+        console.log(this.state.is_playing);
     };
 
     render() {
@@ -31,6 +33,9 @@ class Child extends Component {
                 player.pause();
                 player.load();
             }
+            if (player.ended) {
+                console.log('Ended');
+            }
         }
 
         var playerClassNames = {
@@ -44,7 +49,7 @@ class Child extends Component {
                 <div className="soundIcon" onClick={this.togglePlay.bind(this)}>
                     <div className={classnames(playerClassNames)}></div>
                 </div>
-                <audio ref="player" autoPlay={this.state.is_playing}>
+                <audio ref="player" loop={false} autoPlay={this.state.is_playing}>
                     <source src={this.props.sound} />
                 </audio>
             </div>

@@ -66,6 +66,7 @@ class MyComponent extends Component {
     frontpage: 'http://mikileefoo.dk/ux/static/media/mountains.mp3',
     index: 0
   }
+
   acceptMethods(childDoAlert) {
     this.childDoAlert = childDoAlert;
   }
