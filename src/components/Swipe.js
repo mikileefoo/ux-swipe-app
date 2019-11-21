@@ -9,12 +9,12 @@ import '../style/swipe.css';
 
 
 const imgData = [
-    {title: 'Kvinde i chemise', artist: 'André Derain', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202006/KMSr14.jpg)'}, soundurl: 'http://mikileefoo.dk/ux/static/media/tal_r.mp3'},
-    {title: 'Antiklimaks. Zen-billede. Haiku. I-IV', artist: 'Richard Mortensen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202003/Globus%20oktober%202003/kms7904_1.jpg)'}, soundurl: 'www.apple.com'},
+    {title: 'Kvinde i chemise', artist: 'André Derain', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202006/KMSr14.jpg)'}, soundurl: ''},
+    {title: 'Sex Shop', artist: 'Tal R', img: {background: 'url(http://cspic.smk.dk/globus/CORPUS%202016/kms8700.jpg)'}, soundurl: 'http://mikileefoo.dk/ux/static/media/tal_r.mp3'},
     {title: 'April. Et ungt par i et landskab', artist: 'Henrik Schouboe', img: {background: 'url(http://cspic.smk.dk/globus/31611032/img0026.jpg)'}, soundurl: 'www.apple.com'},
     {title: '18.V.92', artist: 'Richard Mortensen', img: {background: 'url(http://cspic.smk.dk/globus/40412321/img0212.jpg)'}, soundurl: 'http://kristianhagemann.dk/kristianhagemann.dk/kagemann/Richard_Mortensen.mp3'},
     {title: 'Drengeportræt. En af kunstnerens sønner', artist: 'C.A. Jensen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202009/KMS1931.jpg)'}, soundurl: 'http://kristianhagemann.dk/kristianhagemann.dk/kagemann/Drengeportraet_CAJensen.mp3'},
-    {title: 'Blomsterstykke med roser og jordbær', artist: 'O.D. Ottesen', img: {background: 'url(http://cspic.smk.dk/globus/CORPUS%202017/kms440.jpg)'}, soundurl: 'www.apple.com'},
+    {title: 'Frederiksberg Slot', artist: 'Søren L. Lange', img: {background: 'url(http://cspic.smk.dk/globus/CORPUS%202015/UMTS%20projekt/Dumpet%20pr%2028%20august%202015/Juni%20August%202/kksgb12527.jpg)'}, soundurl: 'http://kristianhagemann.dk/kristianhagemann.dk/kagemann/Onsdagstraening.mp3'},
     {title: 'Pubertymunch', artist: 'Judit Ström', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202008/KMS8524.jpg)'}, soundurl: 'www.apple.com'},
     {title: 'La Brésilienne', artist: 'Luc-Albert Moreau', img: {background: 'url(http://cspic.smk.dk/globus/30422937/img0125.jpg)'}, soundurl: 'www.apple.com'},
     {title: 'Deling I', artist: 'Ib Geertsen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202004/globus%20juli%202004/KMS%20plus%20diverse/DEP380.jpg)'}, soundurl: 'www.apple.com'},
@@ -99,16 +99,16 @@ class MyComponent extends Component {
       <div className="swipeWrap">
         <div style={Object.assign({}, imgData[0].img)} className="itemWrap">
           <div className="bottomWrap">
-              <Speak />
               <Info title={imgData[0].title} artist={imgData[0].artist} />
-              <Child sound={imgData[0].soundurl} shareMethods={this.acceptMethods.bind(this)}/>
           </div>
         </div>
       </div>
       <div className="swipeWrap">
         <div style={Object.assign({}, imgData[1].img)} className="itemWrap">
           <div className="bottomWrap">
+            <Speak />
             <Info title={imgData[1].title} artist={imgData[1].artist} />
+            <Child sound={imgData[1].soundurl} shareMethods={this.acceptMethods.bind(this)}/>
           </div>
         </div>
       </div>
@@ -140,7 +140,9 @@ class MyComponent extends Component {
       <div className="swipeWrap">
         <div style={Object.assign({}, imgData[5].img)} className="itemWrap">
           <div className="bottomWrap">
+            <Speak />
             <Info title={imgData[5].title} artist={imgData[5].artist} />
+            <Child sound={imgData[5].soundurl} shareMethods={this.acceptMethods.bind(this)}/>
           </div>
         </div>
       </div>
