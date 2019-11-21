@@ -107,7 +107,9 @@ class MyComponent extends Component {
       <div className="swipeWrap">
         <div style={Object.assign({}, imgData[1].img)} className="itemWrap">
           <div className="bottomWrap">
+            <Speak></Speak>
             <Info title={imgData[1].title} artist={imgData[1].artist} />
+            <Child sound={imgData[1].soundurl} shareMethods={this.acceptMethods.bind(this)}/>
           </div>
         </div>
       </div>
