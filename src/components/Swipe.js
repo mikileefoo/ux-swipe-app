@@ -50,7 +50,7 @@ const imgData = [
     {title: 'Landskab med popler. Septemberaften', artist: 'L.A. Ring', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202009/kms8555%20efter%20kons.jpg)'}, soundurl: 'www.apple.com'},
     {title: 'Mandsportræt', artist: 'Povl Schrøder', img: {background: 'url(http://cspic.smk.dk/globus/31524878/img0185.jpg)'}, soundurl: 'www.apple.com'},
     {title: 'Opstilling', artist: 'Jais Nielsen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202009/KMS3416.jpg)'}, soundurl: 'www.apple.com'},
-    {title: 'Selvportræt', artist: 'Franciska Clausen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202010/Kuas/Francisca%20Clausen/KKS1987-61.JPG)'}, soundurl: 'www.apple.com'},
+    {title: 'Selvportræt', artist: 'Franciska Clausen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202010/Kuas/Francisca%20Clausen/KKS1987-61.JPG)'}, soundurl: 'http://kristianhagemann.dk/kristianhagemann.dk/kagemann/franciska_clausen.mp3'},
     {title: 'Le Luxe II', artist: 'Henri Matisse', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202009/KMsr76.jpg)'}, soundurl: 'www.apple.com'},
     {title: 'Unovis II', artist: 'Richard Mortensen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202003/Globus%20oktober%202003/kms7907.jpg)'}, soundurl: 'http://kristianhagemann.dk/kristianhagemann.dk/kagemann/Richard_Mortensen.mp3'},
     {title: 'Maske', artist: 'Carl-Henning Pedersen', img: {background: 'url(http://cspic.smk.dk/globus/GLOBUS%202007/kms7019.jpg)'}, soundurl: 'www.apple.com'},
@@ -408,7 +408,9 @@ class MyComponent extends Component {
       <div className="swipeWrap">
         <div style={Object.assign({}, imgData[41].img)} className="itemWrap">
           <div className="bottomWrap">
+            <Speak></Speak>
             <Info title={imgData[41].title} artist={imgData[41].artist} />
+            <Child sound={imgData[41].soundurl} shareMethods={this.acceptMethods.bind(this)}/>
           </div>
         </div>
       </div>
